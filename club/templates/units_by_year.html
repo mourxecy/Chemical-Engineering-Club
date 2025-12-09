@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+
+  <h3 class="text-center mb-4 fw-bold text-uppercase">{{ year.name }}</h3>
+
+  <div class="row">
+    {% for unit in units %}
+      <div class="col-md-4 mb-4">
+        <div class="unit-card card p-3 shadow-sm border-0">
+
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="badge bg-primary text-light">{{ unit.code }}</span>
+          </div>
+
+          <h5 class="fw-semibold mt-3 text-dark">{{ unit.title }}</h5>
+
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center mt-5 text-muted">No units added for this academic year yet.</p>
+    {% endfor %}
+  </div>
+
+</div>
+
+<style>
+  .unit-card {
+      border-radius: 12px;
+      transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .unit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
+</style>
+
+{% endblock %}

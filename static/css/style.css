@@ -1,0 +1,299 @@
+/* =========================================================
+   GLOBAL STYLES
+========================================================= */
+body {
+  background-color: #f8fbff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html { scroll-behavior: smooth; }
+
+/* DARK MODE ROOT */
+.dark-mode {
+  background-color: #0a0f1a !important;
+  color: #e8ecf2 !important;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+.dark-mode .navbar {
+  background-color: #101a2b !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link { transition: 0.2s ease; }
+
+.dark-mode .nav-link {
+  color: #d9e6ff !important;
+}
+
+.dark-mode .nav-link:hover {
+  color: #74b9ff !important;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #0d6efd !important;
+}
+
+.dark-mode .nav-link.active {
+  color: #4da3ff !important;
+}
+
+/* Dark-mode toggler icon fix */
+.dark-mode .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+.hero {
+  background: linear-gradient(180deg, #e9f2ff 0%, #f8fbff 100%);
+  color: #003366;
+}
+
+.dark-mode .hero {
+  background: linear-gradient(180deg, #0a0f1a 0%, #132033 100%);
+  color: #c6dcff;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+.card {
+  transition: 0.2s ease;
+}
+
+.dark-mode .card {
+  background-color: #132033 !important;
+  color: #e8ecf2 !important;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dark-mode .card a {
+  color: #9ecaff !important;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .card:hover {
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn {
+  transition: 0.2s ease;
+}
+
+.dark-mode .btn {
+  background-color: #16263d;
+  color: #e8ecf2;
+  border: 1px solid #355578;
+}
+
+.dark-mode .btn:hover {
+  background-color: #1f3554;
+  border-color: #4d7bb6;
+}
+
+/* Primary buttons */
+.dark-mode .btn-primary {
+  background-color: #1b4d80 !important;
+  border-color: #2466ad !important;
+}
+
+.dark-mode .btn-primary:hover {
+  background-color: #2e78c9 !important;
+}
+
+/* =========================================================
+   FORMS (inputs, selects, textareas)
+========================================================= */
+input, select, textarea {
+  transition: 0.2s ease;
+}
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background-color: #132033 !important;
+  color: #e8ecf2 !important;
+  border: 1px solid #2e486b !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #9bb7d9 !important;
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus {
+  border-color: #4da3ff !important;
+  box-shadow: 0 0 5px rgba(77,163,255,0.4);
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+table {
+  transition: 0.2s ease;
+}
+
+.dark-mode table {
+  background-color: #132033;
+  color: #e8ecf2;
+}
+
+.dark-mode th {
+  background-color: #1a2d46 !important;
+  color: #cfe2ff !important;
+}
+
+.dark-mode td {
+  border-color: #2c4464 !important;
+}
+
+.dark-mode tr:nth-child(even) {
+  background-color: #0f1b2d !important;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+a {
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.dark-mode a {
+  color: #9ecaff;
+}
+
+.dark-mode a:hover {
+  color: #4da3ff;
+}
+
+/* =========================================================
+   RESOURCE LIST
+========================================================= */
+.resource-list li {
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.resource-list li:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.dark-mode .resource-list li:hover {
+  color: #74b9ff;
+}
+
+/* =========================================================
+   CAROUSEL IMPROVED
+========================================================= */
+/* CAROUSEL HEIGHT CONTROL */
+#clubCarousel {
+    max-height: 250px;  /* Adjust height here */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#clubCarousel .carousel-image,
+#clubCarousel .carousel-video {
+    height: 250px;     /* Match height above */
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.dark-mode .carousel,
+.dark-mode .carousel-item {
+  background-color: #000;
+}
+
+.carousel-caption {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+
+/* =========================================================
+   FOOTER (full dark-mode support)
+========================================================= */
+footer {
+  padding: 20px 0;
+  background-color: #e9f2ff;
+  color: #003366;
+  transition: 0.2s ease;
+}
+
+.dark-mode footer {
+  background-color: #101a2b !important;
+  color: #c6dcff !important;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.dark-mode footer a {
+  color: #9ecaff !important;
+}
+
+.dark-mode footer a:hover {
+  color: #4da3ff !important;
+}
+
+/* =========================================================
+   PRINT MODE (unchanged)
+========================================================= */
+@media print {
+  nav, .carousel, footer, video, .hero, .btn, .no-print {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+  .carousel-image, .carousel-video {
+    height: 250px;
+  }
+
+  .hero {
+    padding: 40px 15px;
+    text-align: center;
+  }
+}
+
+  .form-control {
+      border-radius: 10px;
+  }
+  .card {
+      border-radius: 15px;
+  }
+
+  .form-label {
+      color: #0d6efd;
+  }
+
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

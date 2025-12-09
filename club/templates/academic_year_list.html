@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h3 class="text-center mb-4">Academic Years</h3>
+  
+  <div class="row">
+    {% for year in years %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm border-0 rounded-4 p-3">
+        <h5 class="fw-bold text-primary">{{ year.name }}</h5>
+        <p>{{ year.description }}</p>
+        <a href="{% url 'units_by_year' year.id %}" class="btn btn-primary btn-sm">
+          View Units
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{%end  block%}

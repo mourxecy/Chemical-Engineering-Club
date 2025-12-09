@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Academic Years | ChemEng Club{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="fw-bold text-primary text-center mb-4">Academic Years</h2>
+
+    <div class="row justify-content-center">
+        {% for y in years %}
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 rounded-4 p-3 h-100 text-center">
+                <div class="card-body">
+                    <h5 class="fw-bold">{{ y }}</h5>
+                    <p class="text-muted">View units for {{ y }}</p>
+
+                    <a href="{% url 'units_by_year' y.year %}" 
+                       class="btn btn-outline-primary btn-sm">
+                       View Units
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">No academic years found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

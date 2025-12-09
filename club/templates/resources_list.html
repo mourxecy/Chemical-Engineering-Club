@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ category|title }} | Study Resources{% endblock %}
+
+{% block content %}
+
+     {% if unit %}
+    <p class="text-muted mb-4">
+        Filtering by Unit: <strong>{{ unit.title }}</strong>
+    </p>
+     {% endif %}
+
+
+<div class="container py-5">
+
+    <h2 class="fw-bold mb-4 text-success">
+        {% if category == "notes" %} Lecture Notes
+        {% elif category == "tutorials" %} Tutorials
+        {% elif category == "reference" %} Reference Materials
+        {% elif category == "papers" %} Past Papers
+        {% endif %}
+    </h2>
+
+    {% if resources %}
+        <div class="row">
+            {% for r in resources %}
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card shadow-sm border-0 p-3 h-100">
+                    <h5 class="fw-bold">{{ r.title }}</h5>
+                    <p class="small text-muted">
+                        {% if r.unit %}Unit: {{ r.unit.title }}{% endif %}
+                        <br>
+                        Uploaded: {{ r.uploaded_at|date:"M d, Y" }}
+                    </p>
+
+                    <a href="{{ r.file.url }}" class="btn btn-success btn-sm" download>
+                        Download
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">No resources found in this category.</p>
+    {% endif %}
+
+    <a href="{% url 'study_resources' %}" class="btn btn-secondary mt-3">Back to Categories</a>
+</div>
+{% endblock %}

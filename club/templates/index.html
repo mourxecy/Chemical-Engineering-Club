@@ -1,0 +1,441 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ============================= -->
+<!--         LOGIN REQUIRED MODAL -->
+<!-- ============================= -->
+<div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Login Required</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <p>You must be logged in to access this section.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary w-100">Login Now</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Carousel Section -->
+<div id="clubCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="7000" data-bs-pause="hover">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="2"></button>
+  </div>
+
+  <div class="carousel-inner">
+
+    <!-- Video Slide I -->
+    <div class="carousel-item active">
+      <video class="active w-100 carousel-video" autoplay loop muted playsinline>
+        <source src="{% static 'videos/Lab.mp4' %}" type="video/mp4">
+      </video>
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+        <h5>Practical Lab Session</h5>
+        <p>Hands-on training in Process Engineering Labs.</p>
+      </div>
+    </div>
+
+    <!-- Video Slide II -->
+    <div class="carousel-item">
+      <video class="active w-100 carousel-video" autoplay loop muted playsinline>
+        <source src="{% static 'videos/get.mp4' %}" type="video/mp4">
+      </video>
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+        <h5>Industrial Visit</h5>
+        <p>Exploring process optimization at a local cement plant</p>
+      </div>
+    </div>
+
+    <!-- Image Slide -->
+    <div class="carousel-item">
+      <img src="{% static 'images/img.png' %}" class="d-block w-100 carousel-image" alt="Field visit">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-2">
+        <h5>ChemEng Club Seminar</h5>
+        <p>Students presenting innovative ideas on sustainable processes</p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#clubCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#clubCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Hero Section -->
+<section id="home" class="hero text-center text-dark py-5">
+  <div class="container">
+    <h1 class="fw-bold display-5 mb-3 text-primary">ChemEng Club Portal</h1>
+    <p class="lead mb-4">
+      Your comprehensive resource hub for Chemical Engineering excellence.<br>
+      Access notes, past papers, and stay connected with club activities.
+    </p>
+
+    <!-- Buttons -->
+    {% if user.is_authenticated %}
+      <a href="{% url 'academic_years' %}" class="btn btn-outline-primary">Browse Units</a>
+      <a href="{% url 'study_resources' %}" class="btn btn-outline-primary">View Resources</a>
+    {% else %}
+      <a href="{%url 'login' %}" class="btn btn-outline-primary">Browse Units</a>
+      <a href="{%url 'login' %}" class="btn btn-outline-primary">View Resources</a>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- Years & Units Section -->
+<section id="years-units" class="py-5">
+  <div class="container">
+    <div class="row text-center g-4">
+
+      <!-- Academic Years -->
+      <div class="col-md-3">
+         <div class="card shadow-sm border-0 rounded-4 p-3 h-100">
+           <div class="card-body">
+             <h5 class="card-title fw-bold text-primary">Academic Years</h5>
+             <p class="card-text">Browse through all years and their units.</p>
+             <a href="{% url 'academic_year_list' %}" class="btn btn-outline-primary btn-sm">View Academic Years</a>
+           </div>
+         </div>
+      </div>
+
+
+      <!-- Study Resources -->
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0 rounded-4 p-3 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Study Resources</h5>
+            <p class="card-text">Access notes, tutorials, and reference materials.</p>
+            <a href="{% url 'study_resources' %}" class="btn btn-outline-primary btn-sm">View</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Past Papers -->
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0 rounded-4 p-3 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Past Papers</h5>
+            <p class="card-text">Practice with previous examination papers.</p>
+            <a href="{% url 'past_papers' %}" class="btn btn-outline-primary btn-sm">View</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Club Events -->
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0 rounded-4 p-3 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Club Events</h5>
+            <p class="card-text">Stay updated with upcoming events.</p>
+            <a href="#events" class="btn btn-outline-primary btn-sm">See Events</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================= -->
+<!--       STUDY RESOURCES        -->
+<!-- ============================= -->
+<section id="resources" class="py-5 bg-white">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4 text-primary">Study Resources</h2>
+    <p class="mb-4">Find lecture notes, tutorials, and reference materials organized by year and unit.</p>
+
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Lecture Notes</h5>
+            <p>Download lecture notes for each unit and year.</p>
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#notesModal">View Notes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Tutorials</h5>
+            <p>Access example problems, worked-out solutions, and exercises.</p>
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tutorialsModal">Open Tutorials</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Reference Materials</h5>
+            <p>Recommended textbooks and external study resources.</p>
+            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#referenceModal">View References</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================================== -->
+<!--      NOTES MODAL (SHORTENED)       -->
+<!-- =================================== -->
+<div class="modal fade" id="notesModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Lecture Notes</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="accordion" id="notesAccordion">
+
+          <!-- Add your items here (same as your original code) -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tutorials Modal -->
+<div class="modal fade" id="tutorialsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Tutorials</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="accordion" id="tutorialsAccordion">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- References Modal -->
+<div class="modal fade" id="referenceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Reference Materials</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="bi bi-book text-success"></i> Perry's Chemical Engineers' Handbook</li>
+          <li class="list-group-item"><i class="bi bi-book text-success"></i> Unit Operations of Chemical Engineering – McCabe & Smith</li>
+          <li class="list-group-item"><i class="bi bi-book text-success"></i> Thermodynamics – Smith, Van Ness & Abbott</li>
+          <li class="list-group-item"><i class="bi bi-book text-success"></i> Process Heat Transfer – Kern</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- EVENTS PAGE -->
+<section id="events" class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Upcoming Events -->
+    <h2 class="fw-bold mb-4 text-center text-primary">Upcoming Events</h2>
+    {% if upcoming_events %}
+      <div class="row">
+        {% for event in upcoming_events %}
+          <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <img src="{{event.poster.url}}" class="card-img-top">
+                <p class="card-text">{{ event.description|truncatewords:20 }}</p>
+                <small class="text-muted">
+                  Date: {{ event.start|date:"Y-m-d H:i" }}
+                </small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center text-muted">No upcoming events.</p>
+    {% endif %}
+
+    <hr class="my-5">
+
+<!-- Past Events (Collapsible Section) -->
+<div class="card shadow-lg mb-5">
+  
+  <!-- Header -->
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Past Events</h4>
+
+      <!-- Toggle Button -->
+      <button class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target="#pastEventsCollapse" id="togglePastEventsBtn">
+          View
+      </button>
+  </div>
+
+  <!-- Collapsible Body -->
+  <div class="collapse" id="pastEventsCollapse">
+      <div class="card-body">
+
+          {% if past_events %}
+
+          <div class="row" id="pastEventsContainer">
+              {% for event in past_events|slice:":3" %}   {# Show first 3 only #}
+              <div class="col-md-4 mb-4 past-event-card">
+                  
+                  <div class="card shadow-sm border-secondary h-100 fade-in">
+                      {% if event.poster %}
+                      <img src="{{ event.poster.url }}" class="card-img-top" alt="Poster">
+                      {% endif %}
+
+                      <div class="card-body">
+                          <h5 class="card-title">{{ event.title }}</h5>
+                          <p class="card-text">{{ event.description|truncatewords:20 }}</p>
+
+                          <small class="text-muted d-block mb-2">
+                              Date: {{ event.start|date:"Y-m-d H:i" }}
+                          </small>
+
+                          <a href="{% url 'event_edit' event.id %}" class="btn btn-outline-secondary btn-sm">
+                              Edit
+                          </a>
+                      </div>
+                  </div>
+
+              </div>
+              {% endfor %}
+          </div>
+
+          <!-- Pagination Buttons -->
+          {% if past_events|length > 3 %}
+          <div class="text-center mt-3">
+              <button class="btn btn-outline-primary btn-sm" id="loadMorePastEvents">Load More</button>
+          </div>
+          {% endif %}
+
+          {% else %}
+              <p class="text-center text-muted">No past events yet.</p>
+          {% endif %}
+
+      </div>
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-primary text-light pt-5 pb-3 mt-5">
+  <div class="container">
+
+    <div class="row text-center text-md-start">
+
+      <!-- Club Info -->
+      <div class="col-md-4 mb-4">
+        <h4 class="fw-bold text-warning">ChemEng Club</h4>
+        <p class="small text-active">
+          Empowering Chemical Engineering students with high-quality resources, expert mentorship, industry insights, and collaborative platforms that support their journey from the classroom to the professional world.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold mb-3 text-warning">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="footer-link">Home</a></li>
+          <li><a href="#" class="footer-link">Years & Units</a></li>
+          <li><a href="#" class="footer-link">Resources</a></li>
+          <li><a href="#" class="footer-link">Events</a></li>
+          <li><a href="#" class="footer-link">Admin</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold mb-3 text-warning">Contact Us</h5>
+        <p class="small mb-1"><strong>Chairman:</strong> 0728187828</p>
+        <p class="small mb-0">
+          <strong>Email:</strong>
+          <a href="mailto:chemengclub@gmail.com" class="footer-link">chemengclub@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+
+    <hr class="border-secondary">
+
+    <p class="text-center small text-active mb-0 fw-bold">
+      © 2025 ChemEng Club — All Rights Reserved
+    </p>
+
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .footer-link:hover {
+    color: #ffc107; /* Bootstrap warning color */
+    padding-left: 4px;
+  }
+</style>
+
+<!-- Scripts -->
+<script>
+  // Show login-required modal for certain buttons
+  document.querySelectorAll('.require-login').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      new bootstrap.Modal(document.getElementById('loginRequiredModal')).show();
+    });
+  });
+
+  // Pause videos when slides change
+  const carousel = document.querySelector('#clubCarousel');
+
+  carousel.addEventListener('slide.bs.carousel', function (e) {
+    const videos = e.target.querySelectorAll('video');
+    videos.forEach(v => v.pause());
+  });
+
+  carousel.addEventListener('slid.bs.carousel', function (e) {
+    const activeVideo = e.target.querySelector('.carousel-item.active video');
+    if (activeVideo) activeVideo.play();
+  });
+</script>
+
+{% endblock content %}

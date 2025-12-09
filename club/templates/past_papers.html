@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Past Papers | ChemEng Club{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <h2 class="fw-bold mb-4 text-primary">Past Examination Papers</h2>
+
+    {% if papers %}
+    <div class="row">
+        {% for p in papers %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold">{{ p.title }}</h5>
+
+                    {% if p.unit %}
+                    <p class="text-muted mb-1">
+                        <strong>Unit:</strong> {{ p.unit.title }}
+                    </p>
+                    {% endif %}
+
+                    <p class="small">{{ p.description|default:"No description" }}</p>
+
+                    <a href="{{ p.file.url }}" class="btn btn-primary btn-sm mt-3" download>
+                        Download Paper
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <p class="text-muted">No past papers have been uploaded yet.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

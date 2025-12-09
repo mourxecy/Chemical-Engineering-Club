@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2>Admin Dashboard</h2>
+
+  <div class="mb-3">
+    <a href="{% url 'resource_create' %}" class="btn btn-success">Add Resource</a>
+    <a href="{% url 'unit_create' %}" class="btn btn-primary">Add Unit</a>
+    <a href="{% url 'event_create' %}" class="btn btn-warning">Add Event</a>
+  </div>
+
+  <h4>Resources</h4>
+  <table class="table table-sm">
+    <thead><tr><th>Title</th><th>Type</th><th>Unit</th><th>Uploaded</th><th>Actions</th></tr></thead>
+    <tbody>
+    {% for r in resources %}
+      <tr>
+        <td>{{ r.title }}</td>
+        <td>{{ r.get_resource_type_display }}</td>
+        <td>{{ r.unit }}</td>
+        <td>{{ r.uploaded_at|date:"Y-m-d" }}</td>
+        <td>
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'resource_edit' r.pk %}">Edit</a>
+          <a class="btn btn-sm btn-outline-danger" href="{% url 'resource_delete' r.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No resources</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- ====================== UNITS SECTION ======================= -->
+    <h4 class="mt-4">Units</h4>
+    <ul>
+        {% for u in units %}
+        <li>
+            {{ u.title }} (Year {{ u.year }})
+            → <a href="{% url 'unit_edit' u.pk %}">Edit</a> |
+            <a href="{% url 'unit_delete' u.pk %}">Delete</a>
+        </li>
+        {% empty %}
+        <li>No units available.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- ====================== UPCOMING EVENTS ======================= -->
+    <h4 class="mt-5 text-success">Upcoming Events</h4>
+    <ul>
+        {% for ev in upcoming_events %}
+        <li class="mb-2">
+            <strong>{{ ev.title }}</strong>
+            <span>({{ ev.start|date:"Y-m-d H:i" }})</span>
+
+            → <a href="{% url 'event_edit' ev.pk %}">Edit</a> |
+              <a href="{% url 'event_delete' ev.pk %}">Delete</a>
+        </li>
+        {% empty %}
+        <li>No upcoming events.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- ====================== PAST EVENTS ======================= -->
+    <h4 class="mt-5 text-danger">Past Events</h4>
+    <ul>
+        {% for ev in past_events %}
+        <li class="mb-2">
+            <strong>{{ ev.title }}</strong>
+            <span>({{ ev.start|date:"Y-m-d H:i" }})</span>
+
+            → <a href="{% url 'event_edit' ev.pk %}">Edit</a> |
+              <a href="{% url 'event_delete' ev.pk %}">Delete</a>
+        </li>
+        {% empty %}
+        <li>No past events.</li>
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

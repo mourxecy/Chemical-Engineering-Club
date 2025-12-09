@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Home - ChemEng Club{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="mb-3">ChemEng Club Portal</h1>
+
+  <!-- Showcase a few resources -->
+  <h4>Recent Resources</h4>
+  <div class="row">
+    {% for r in resources %}
+      <div class="col-md-4 mb-3">
+        <div class="card p-3 h-100">
+          <h5>{{ r.title }}</h5>
+          <p class="small">{{ r.get_resource_type_display }} {% if r.unit %}- {{ r.unit }}{% endif %}</p>
+          <a href="{{ r.file.url }}" class="btn btn-sm btn-primary" download>Download</a>
+        </div>
+      </div>
+    {% empty %}
+      <p>No resources yet.</p>
+    {% endfor %}
+  </div>
+
+  <h4 class="mt-4">Upcoming Events</h4>
+  <div class="row">
+    {% for e in events %}
+      <div class="col-md-4 mb-3">
+        <div class="card p-3">
+          <h5>{{ e.title }}</h5>
+          <p>{{ e.start|date:"M d, Y H:i" }} {% if e.location %} • {{ e.location }}{% endif %}</p>
+        </div>
+      </div>
+    {% empty %}
+      <p>No upcoming events.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

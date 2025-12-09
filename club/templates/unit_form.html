@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
+    
+    <h3 class="text-center mb-4 text-primary">
+      {% if object %} Edit Unit {% else %} Add Unit {% endif %}
+    </h3>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-secondary" href="{% url 'admin_dashboard' %}">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
